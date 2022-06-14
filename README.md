@@ -39,8 +39,8 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 
 ## Install
 
-    $ git clone https://gitlab.com/msb6531/dialogflow-webhook
-    $ cd dialogflow-webhook
+    $ git clone https://github.com/darioriosdev/primerwebhook.git
+    $ cd primerwebhook
     $ npm install
 
 ## Configure app
