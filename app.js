@@ -28,6 +28,25 @@ app.post("/webhook", (req, res) => {
   // get agent from request
   let agent = new WebhookClient({ request: req, response: res });
 
+  const intentName = req.body.queryResult.intent.displayName;
+  console.log("Parameters", agent.parameters);
+  console.log("Intent Name", intentName);
+
+  if (
+    req.body.queryResult.sentimentAnalysisResult &&
+    req.body.queryResult.sentimentAnalysisResult.queryTextSentiment &&
+    req.body.queryResult.sentimentAnalysisResult.queryTextSentiment.score
+  ) {
+    console.log(
+      "Sentiment score: ",
+      req.body.queryResult.sentimentAnalysisResult.queryTextSentiment.score
+    );
+    console.log(
+      "Sentiment Magnitude: ",
+      req.body.queryResult.sentimentAnalysisResult.queryTextSentiment.magnitude
+    );
+  }
+
   // create intentMap for handle intent
   let intentMap = new Map();
 
@@ -49,6 +68,7 @@ function handleWebHookIntent(agent) {
 
 /**
  * now listing the server on port number 3002 :)
+ * use port 8080 for app engine
  * */
 app.listen(3002, () => {
   console.log("Server is Running on port 3002");
